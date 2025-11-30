@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.js";
+
+:root {
+  --theme-primary: 59 130 246; /* blue-500 */
+  --theme-primary-foreground: 255 255 255;
+}
+
+/* Dynamic theme colors */
+.theme-blue {
+  --theme-primary: 59 130 246; /* blue-500 */
+}
+
+.theme-green {
+  --theme-primary: 34 197 94; /* green-500 */
+}
+
+.theme-purple {
+  --theme-primary: 168 85 247; /* purple-500 */
+}
+
+.theme-red {
+  --theme-primary: 239 68 68; /* red-500 */
+}
+
+.theme-orange {
+  --theme-primary: 249 115 22; /* orange-500 */
+}
+
+/* Custom primary color utilities */
+.bg-theme-primary {
+  background-color: rgb(var(--theme-primary));
+}
+
+.text-theme-primary {
+  color: rgb(var(--theme-primary));
+}
+
+.border-theme-primary {
+  border-color: rgb(var(--theme-primary));
+}
+
+/* Hero UI custom theme integration */
+.hero-ui-primary {
+  --heroui-primary: var(--theme-primary);
+  --heroui-primary-foreground: var(--theme-primary-foreground);
+}
+
+/* Ensure proper styling for the app */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: hsl(var(--heroui-background));
+  color: hsl(var(--heroui-foreground));
+}
+
+/* Global transition effects */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Smooth hover effects for interactive elements */
+a, button, [role="button"], .cursor-pointer {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Scale effect for cards on hover */
+.card-hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Stagger animation for lists */
+.stagger-100 > * {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.stagger-100 > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-100 > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-100 > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-100 > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-100 > *:nth-child(5) { animation-delay: 400ms; }
+.stagger-100 > *:nth-child(6) { animation-delay: 500ms; }
+.stagger-100 > *:nth-child(7) { animation-delay: 600ms; }
+.stagger-100 > *:nth-child(8) { animation-delay: 700ms; }
+
+/* Pulse animation for online status */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Loading animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--heroui-content2));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--heroui-content3));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--heroui-content4));
+}
