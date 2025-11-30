@@ -163,19 +163,19 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-8 p-6 md:p-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">
+        <div className="space-y-2">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
             {themeLoading ? 'Loading...' : sitename}
           </h1>
-          <p className="text-default-500 mt-1">
+          <p className="text-default-500 text-sm md:text-base">
             {themeLoading ? 'Loading site information...' : description}
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3 bg-card rounded-lg p-2 shadow-sm">
           <ThemeSwitch />
           <LanguageSwitch />
           <Chip
@@ -185,11 +185,17 @@ export default function Dashboard() {
           >
             {isConnected ? t('dashboard.connected') : t('dashboard.disconnected')}
           </Chip>
-          <Chip color="primary" variant="flat">
+          <Chip
+            color="primary"
+            variant="flat"
+          >
             {onlineCount} / {totalNodes} {t('dashboard.online')}
           </Chip>
           {offlineCount > 0 && (
-            <Chip color="danger" variant="flat">
+            <Chip
+              color="danger"
+              variant="flat"
+            >
               {offlineCount} {t('dashboard.offline')}
             </Chip>
           )}
@@ -197,55 +203,59 @@ export default function Dashboard() {
       </div>
 
       {/* Statistics Overview */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.totalNodes')}</p>
-                <p className="text-2xl font-bold">{totalNodes}</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.totalNodes')}</p>
+                <p className="text-2xl md:text-3xl font-bold">{totalNodes}</p>
               </div>
-              <div className="p-2 bg-primary/10 rounded-full">
-                <Server size={20} className="text-primary" />
+              <div className="p-3 bg-primary/10 rounded-full backdrop-blur-sm">
+                <Server size={24} className="text-primary" />
               </div>
             </div>
           </CardBody>
         </Card>
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-success/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.onlineNodes')}</p>
-                <p className="text-2xl font-bold text-success">{onlineCount}</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.onlineNodes')}</p>
+                <p className="text-2xl md:text-3xl font-bold text-success">{onlineCount}</p>
               </div>
-              <div className="p-2 bg-success/10 rounded-full">
-                <Wifi size={20} className="text-success" />
+              <div className="p-3 bg-success/10 rounded-full backdrop-blur-sm">
+                <Wifi size={24} className="text-success" />
               </div>
             </div>
           </CardBody>
         </Card>
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-danger/5 to-danger/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.offlineNodes')}</p>
-                <p className="text-2xl font-bold text-danger">{offlineCount}</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.offlineNodes')}</p>
+                <p className="text-2xl md:text-3xl font-bold text-danger">{offlineCount}</p>
               </div>
-              <div className="p-2 bg-danger/10 rounded-full">
-                <WifiOff size={20} className="text-danger" />
+              <div className="p-3 bg-danger/10 rounded-full backdrop-blur-sm">
+                <WifiOff size={24} className="text-danger" />
               </div>
             </div>
           </CardBody>
         </Card>
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-warning/5 to-warning/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.groups')}</p>
-                <p className="text-2xl font-bold">{groups.length}</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.groups')}</p>
+                <p className="text-2xl md:text-3xl font-bold">{groups.length}</p>
               </div>
-              <div className="p-2 bg-warning/10 rounded-full">
-                <Users size={20} className="text-warning" />
+              <div className="p-3 bg-warning/10 rounded-full backdrop-blur-sm">
+                <Users size={24} className="text-warning" />
               </div>
             </div>
           </CardBody>
@@ -253,55 +263,59 @@ export default function Dashboard() {
       </div>
       
       {/* Resource Statistics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.avgCpuUsage')}</p>
-                <p className="text-2xl font-bold">{avgCpuUsage}%</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.avgCpuUsage')}</p>
+                <p className="text-2xl md:text-3xl font-bold">{avgCpuUsage}%</p>
               </div>
-              <div className="p-2 bg-blue-100 rounded-full">
-                <Cpu size={20} className="text-blue-500" />
+              <div className="p-3 bg-blue-100 rounded-full backdrop-blur-sm">
+                <Cpu size={24} className="text-blue-500" />
               </div>
             </div>
           </CardBody>
         </Card>
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.avgMemoryUsage')}</p>
-                <p className="text-2xl font-bold">{avgMemoryUsage}%</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.avgMemoryUsage')}</p>
+                <p className="text-2xl md:text-3xl font-bold">{avgMemoryUsage}%</p>
               </div>
-              <div className="p-2 bg-purple-100 rounded-full">
-                <Database size={20} className="text-purple-500" />
+              <div className="p-3 bg-purple-100 rounded-full backdrop-blur-sm">
+                <Database size={24} className="text-purple-500" />
               </div>
             </div>
           </CardBody>
         </Card>
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-green-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.avgDiskUsage')}</p>
-                <p className="text-2xl font-bold">{avgDiskUsage}%</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.avgDiskUsage')}</p>
+                <p className="text-2xl md:text-3xl font-bold">{avgDiskUsage}%</p>
               </div>
-              <div className="p-2 bg-green-100 rounded-full">
-                <HardDrive size={20} className="text-green-500" />
+              <div className="p-3 bg-green-100 rounded-full backdrop-blur-sm">
+                <HardDrive size={24} className="text-green-500" />
               </div>
             </div>
           </CardBody>
         </Card>
-        <Card className="shadow-sm">
-          <CardBody className="p-4">
+        <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          <CardBody className="p-5 relative z-10">
             <div className="flex justify-between items-center">
-              <div>
-                <p className="text-default-500 text-sm">{t('dashboard.totalProcesses')}</p>
-                <p className="text-2xl font-bold">{totalProcesses}</p>
+              <div className="space-y-1">
+                <p className="text-default-500 text-sm font-medium">{t('dashboard.totalProcesses')}</p>
+                <p className="text-2xl md:text-3xl font-bold">{totalProcesses}</p>
               </div>
-              <div className="p-2 bg-orange-100 rounded-full">
-                <Activity size={20} className="text-orange-500" />
+              <div className="p-3 bg-orange-100 rounded-full backdrop-blur-sm">
+                <Activity size={24} className="text-orange-500" />
               </div>
             </div>
           </CardBody>
@@ -309,39 +323,42 @@ export default function Dashboard() {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-        <div className="relative w-full sm:w-64">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-default-400" size={18} />
+      <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center bg-card rounded-xl p-4 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div className="relative w-full sm:w-80 flex-grow">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-default-400 transition-colors duration-300" size={18} />
           <Input
             placeholder={t('dashboard.searchPlaceholder')}
-            className="pl-10"
+            className="pl-10 transition-all duration-300"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        {/* View Mode Toggle */}
-        <div className="flex gap-2">
-          <Button
-            color={viewMode === "grid" ? "primary" : "default"}
-            variant={viewMode === "grid" ? "solid" : "bordered"}
-            onPress={() => handleViewModeChange("grid")}
-            size="sm"
-            startContent={<Grid3X3 size={16} />}
-          >
-            {t('dashboard.gridView')}
-          </Button>
-          <Button
-            color={viewMode === "table" ? "primary" : "default"}
-            variant={viewMode === "table" ? "solid" : "bordered"}
-            onPress={() => handleViewModeChange("table")}
-            size="sm"
-            startContent={<Table size={16} />}
-          >
-            {t('dashboard.tableView')}
-          </Button>
-        </div>
+        
+        <div className="flex flex-wrap gap-3 justify-start sm:justify-center">
+          {/* View Mode Toggle */}
+          <div className="flex gap-1 bg-default-100 rounded-lg p-1 transition-all duration-300">
+            <Button
+              color={viewMode === "grid" ? "primary" : "default"}
+              variant={viewMode === "grid" ? "solid" : "ghost"}
+              onPress={() => handleViewModeChange("grid")}
+              size="sm"
+              startContent={<Grid3X3 size={16} />}
+              className="rounded-md transition-all duration-300"
+            >
+              {t('dashboard.gridView')}
+            </Button>
+            <Button
+              color={viewMode === "table" ? "primary" : "default"}
+              variant={viewMode === "table" ? "solid" : "ghost"}
+              onPress={() => handleViewModeChange("table")}
+              size="sm"
+              startContent={<Table size={16} />}
+              className="rounded-md transition-all duration-300"
+            >
+              {t('dashboard.tableView')}
+            </Button>
+          </div>
 
-        <div className="flex gap-2">
           {/* Group Filter */}
           {groups.length > 0 && (
             <Dropdown>
@@ -349,7 +366,8 @@ export default function Dashboard() {
                 <Button
                   variant="bordered"
                   size="sm"
-                  endContent={<ChevronDown size={14} />}
+                  endContent={<ChevronDown size={14} className="transition-transform duration-300" />}
+                  className="rounded-md transition-all duration-300 hover:shadow-sm"
                 >
                   {t('dashboard.group')}: {selectedGroup === "all" ? t('dashboard.allGroups') : selectedGroup}
                 </Button>
@@ -365,7 +383,7 @@ export default function Dashboard() {
                 items={[{ key: "all", label: t('dashboard.allGroups') }, ...groups.map(g => ({ key: g, label: g }))]}
               >
                 {(item: { key: string; label: string }) => (
-                  <DropdownItem key={item.key}>{item.label}</DropdownItem>
+                  <DropdownItem key={item.key} className="transition-all duration-200">{item.label}</DropdownItem>
                 )}
               </DropdownMenu>
             </Dropdown>
@@ -377,12 +395,13 @@ export default function Dashboard() {
               <Button
                 variant="bordered"
                 size="sm"
-                endContent={<ChevronDown size={14} />}
+                endContent={<ChevronDown size={14} className="transition-transform duration-300" />}
                 startContent={
                   onlineFilter === "online" ? <UserCheck size={14} /> :
                     onlineFilter === "offline" ? <UserX size={14} /> :
                       <Users size={14} />
                 }
+                className="rounded-md transition-all duration-300 hover:shadow-sm"
               >
                 {onlineFilter === "all" ? t('dashboard.allNodes', 'All Nodes') :
                   onlineFilter === "online" ? t('dashboard.onlineOnly', 'Online Only') :
@@ -398,13 +417,13 @@ export default function Dashboard() {
                 handleOnlineFilterChange(selectedKey);
               }}
             >
-              <DropdownItem key="all" startContent={<Users size={14} />}>
+              <DropdownItem key="all" startContent={<Users size={14} />} className="transition-all duration-200">
                 {t('dashboard.allNodes', 'All Nodes')}
               </DropdownItem>
-              <DropdownItem key="online" startContent={<UserCheck size={14} />}>
+              <DropdownItem key="online" startContent={<UserCheck size={14} />} className="transition-all duration-200">
                 {t('dashboard.onlineOnly', 'Online Only')}
               </DropdownItem>
-              <DropdownItem key="offline" startContent={<UserX size={14} />}>
+              <DropdownItem key="offline" startContent={<UserX size={14} />} className="transition-all duration-200">
                 {t('dashboard.offlineOnly', 'Offline Only')}
               </DropdownItem>
             </DropdownMenu>
@@ -414,11 +433,15 @@ export default function Dashboard() {
 
       {/* Nodes Display */}
       {sortedNodes.length === 0 ? (
-        <div className="text-center py-12 text-default-500">
-          {t('dashboard.noServers')}
+        <div className="text-center py-16 bg-card rounded-xl shadow-md">
+          <div className="text-default-500 space-y-3">
+            <Server size={48} className="mx-auto opacity-50" />
+            <h3 className="text-lg font-medium">{t('dashboard.noServers')}</h3>
+            <p className="text-sm">{t('dashboard.noServersDescription')}</p>
+          </div>
         </div>
       ) : viewMode === "grid" ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {sortedNodes.map((node) => (
             <NodeCard
               key={node.uuid}
@@ -430,7 +453,7 @@ export default function Dashboard() {
           ))}
         </div>
       ) : (
-        <div className="w-full overflow-x-auto">
+        <div className="bg-card rounded-xl shadow-md overflow-hidden">
           <NodesTable
             nodes={sortedNodes}
             statusData={statusData}
@@ -440,7 +463,7 @@ export default function Dashboard() {
       )}
 
       {/* Footer */}
-      <footer className="text-center text-sm text-default-500 mt-8 space-y-1">
+      <footer className="text-center text-sm text-default-500 mt-10 space-y-1">
         <div>
           {t('footer.poweredBy')}{" "}
           Theme{" "}
@@ -448,7 +471,7 @@ export default function Dashboard() {
             href="https://github.com/uvexz/komari-theme-hero" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-primary hover:underline"
+            className="text-primary hover:underline font-medium"
           >
             Hero
           </a>
